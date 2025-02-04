@@ -8,6 +8,8 @@ getCitations(tree)
 }
 \arguments{
 \item{tree}{A phylogeny obtained from extractTree (see details).}
+\item{synth_version (optional)}{The version of synthesis for the phylogeny from extractTree. Muct be one of 0.1, 1.0, 1.2, 1.3. Default is most recent version.}
+\item{data_source (optional)}{Defaults to "internal" which uses data packaged in Clootl. Can alternately point to path to a clone of AvesData repo. (https://github.com/McTavishLab/AvesData) for new vresions not yet added to Clootl}
 }
 \value{
 A dataframe of the percent of internal nodes supported by a given study, as well
@@ -50,7 +52,11 @@ prunedTree <- extractTree(species=spp, output.type="scientific",
    taxonomy.year=2021, version="current")
 
 #get your citation DF
-yourCitations <- getCitations(tree=prunedTree)}
+yourCitations <- getCitations(tree=prunedTree)
+
+
+
+}
 }
 \author{
 Eliot Miller, Emily Jane McTavish

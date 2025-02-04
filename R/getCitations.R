@@ -98,12 +98,12 @@ getCitations <- function(tree, synth_version="1.3", data_source = "internal")
   
   # now query the citations
   dois <- c()
-  for(i in 1:length(finalCounts$studies))
+  for(i in 1:length(finalCounts$study))
   {
     #again, define some convenience variables
     url <- "https://api.opentreeoflife.org/v3/studies/find_studies"
     headers <- c('Content-Type' = 'application/json')
-    body <- jsonlite::toJSON(list("property"="ot:studyId", "value"=finalCounts$studies[i], "verbose"="true"),
+    body <- jsonlite::toJSON(list("property"="ot:studyId", "value"=finalCounts$study[i], "verbose"="true"),
                              auto_unbox=TRUE)
     
     response <- RCurl::postForm(uri = url,
@@ -135,7 +135,7 @@ getCitations <- function(tree, synth_version="1.3", data_source = "internal")
   
   #add a row for contributions by taxonomy
   toBind <- data.frame(study="Taxonomic additions", counts=taxonomyNodes,
-                       doi="https://github.com/eliotmiller/clootl")
+                       doi="https://github.com/eliotmiller/addtaxa")
   finalCounts <- rbind(finalCounts, toBind)
   
   #order in decreasing order, strip row names, and return
@@ -146,7 +146,7 @@ getCitations <- function(tree, synth_version="1.3", data_source = "internal")
   finalCounts$contribution <- (finalCounts$counts/tree$Nnode)*100
   
   #drop the raw counts and return
-#  finalCounts$counts <- NULL
+  finalCounts$counts <- NULL
   finalCounts
 }
 
