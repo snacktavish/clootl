@@ -63,7 +63,7 @@ getCitations <- function(tree, version="1.3", data_source = "internal")
   nodesToQuery <- nodesToQuery[nodesToQuery != "NA"]
   
   versions <- c('0.1','1.0','1.2','1.3')
-  if (!is.element(synth_version, versions)){    
+  if (!is.element(version, versions)){    
     stop("version not recognized: ", version)
   }
   
